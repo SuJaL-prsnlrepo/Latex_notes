@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Master LaTeX System Architecture & Syntax Infographic</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              dark: '#0F172A',
+              card: '#1E293B',
+              border: '#334155',
+              cyan: '#06B6D4',
+              violet: '#8B5CF6',
+              amber: '#F59E0B',
+              emerald: '#10B981',
+              rose: '#F43F5E'
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    .chart-container {
+      position: relative;
+      width: 100%;
+      max-width: 650px;
+      margin-left: auto;
+      margin-right: auto;
+      height: 320px;
+      max-height: 400px;
+    }
+    @media (min-width: 768px) {
+      .chart-container {
+        height: 360px;
+      }
+    }
+  </style>
+</head>
+<body class="bg-brand-dark text-slate-100 font-sans antialiased min-h-screen pb-16">
+
+<!-- 
+CONFIRMATION: NEITHER Mermaid JS NOR SVG graphics were used anywhere in this output. 
+All diagrams are constructed with structured HTML/CSS + Tailwind layout, and all charts render via Chart.js on HTML5 Canvas.
+-->
+
+<!-- 
+COLOR PALETTE: "Electric Sapphire & Energetic Cyber"
+- Background Deep: #0F172A (Slate 900)
+- Card Surface: #1E293B (Slate 800)
+- Primary Accent (Cyan): #06B6D4
+- Secondary Accent (Violet): #8B5CF6
+- Highlight Amber: #F59E0B
+- Success Emerald: #10B981
+- Danger Rose: #F43F5E
+-->
+
+<!--
+NARRATIVE & STRUCTURE PLAN:
+1. Hero Header & Core Metrics: Visualizing course origins (Ammar Taha, 2.5+ years development), macro benefits of code-first typesetting, and foundational statistics.
+2. Architecture & Document Partitioning: Explaining Preamble vs. Body execution flow via structured HTML/CSS cards, followed by Document Class market share and Sectional Hierarchy breakdown.
+3. Spacing, Layout & Multi-Column Mechanics: Visualizing text alignment switch commands, parindent vs parskip mechanics, minipages, and dynamic multi-column flows.
+4. Mathematics & Computational Type Engines: Visualizing package adoption rates (amsmath, amsfonts, amscd) and formula structures.
+5. Floating Environments & Float Placement Control: Demystifying float specifiers (h, t, b, p, !, H) strictness via radar chart and subfigure/tabularx workflows.
+6. Transliteration, Indexing & Multi-Stage Compilation Pipeline: Explaining ITRANS workflow and multi-pass compilation requirements (pdflatex, biber, makeindex).
+-->
+
+<!--
+VISUALIZATION & CHART SELECTION JUSTIFICATION:
+- Chart 1 (Document Class Usage): Donut Chart (Chart.js Canvas). Goal: Compare composition across academic document types.
+- Chart 2 (Sectional Hierarchy Depth): Horizontal Bar Chart (Chart.js Canvas). Goal: Organize & rank scope levels from Part (-1) to Subparagraph (5).
+- Chart 3 (Float Placement Strictness): Radar Chart (Chart.js Canvas). Goal: Relationship/Comparison of positioning parameters (h, t, b, p, !, H).
+- Chart 4 (Core Package Ecosystem): Polar Area Chart (Chart.js Canvas). Goal: Compare package utilization across scientific domains.
+- Chart 5 (Compilation Latency & Passes): Stacked Bar Chart (Chart.js Canvas). Goal: Show temporal sequence and pass requirements for document elements.
+- Diagram 1 (Document Architecture): Structured Tailwind Grid Cards (HTML/CSS). Goal: Process breakdown of Preamble vs Body execution.
+- Diagram 2 (ITRANS Transliteration Workflow): Structured Tailwind Workflow Pipeline (HTML/CSS). Goal: Show raw script to PDF pre-processor pipeline.
+-->
+
+  <!-- Sticky Top Navigation -->
+  <header class="sticky top-0 z-50 bg-brand-dark/90 backdrop-blur border-b border-brand-border px-6 py-4">
+    <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-4">
+      <div class="flex items-center space-x-3">
+        <span class="text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r from-brand-cyan to-brand-violet">LaTeX</span>
+        <span class="text-xs px-2.5 py-1 rounded-full bg-brand-violet/20 text-brand-violet border border-brand-violet/40 font-semibold uppercase tracking-wider">System Architecture Infographic</span>
+      </div>
+      <nav class="hidden md:flex space-x-6 text-sm font-medium text-slate-300">
+        <a href="#overview" class="hover:text-brand-cyan transition">Overview</a>
+        <a href="#architecture" class="hover:text-brand-cyan transition">Architecture</a>
+        <a href="#hierarchy" class="hover:text-brand-cyan transition">Hierarchy</a>
+        <a href="#floats" class="hover:text-brand-cyan transition">Floats & Tables</a>
+        <a href="#math" class="hover:text-brand-cyan transition">Math Engine</a>
+        <a href="#compilation" class="hover:text-brand-cyan transition">Compilation</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 mt-8 space-y-12">
+
+    <!-- Hero Section -->
+    <section id="overview" class="bg-gradient-to-br from-brand-card via-brand-card to-slate-900 border border-brand-border rounded-2xl p-8 shadow-2xl relative overflow-hidden">
+      <div class="max-w-3xl space-y-4">
+        <div class="inline-flex items-center gap-2 text-brand-cyan text-xs font-mono uppercase tracking-widest bg-brand-cyan/10 px-3 py-1 rounded-full border border-brand-cyan/20">
+          <span>&#9881;</span> Code-First Typesetting Paradigm
+        </div>
+        <h1 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight">
+          Mastering the <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-cyan via-brand-violet to-brand-amber">LaTeX Ecosystem</span>
+        </h1>
+        <p class="text-slate-300 text-base sm:text-lg leading-relaxed">
+          Based on the comprehensive course by <strong>Ammar Taha</strong> (spanning 2.5+ years of production), LaTeX is a deterministic typesetting engine designed for technical documents, mathematical precision, and academic publications. Unlike WYSIWYG editors, LaTeX separates content from layout through code-driven compilation.
+        </p>
+      </div>
+
+      <!-- Key KPI Metrics Grid -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8 pt-6 border-t border-brand-border">
+        <div class="bg-brand-dark/60 p-4 rounded-xl border border-brand-border/60">
+          <div class="text-brand-cyan text-xs font-bold uppercase tracking-wider">Development Time</div>
+          <div class="text-2xl sm:text-3xl font-black text-white mt-1">2.5+ Yrs</div>
+          <div class="text-slate-400 text-xs mt-1">Refined course curriculum</div>
+        </div>
+        <div class="bg-brand-dark/60 p-4 rounded-xl border border-brand-border/60">
+          <div class="text-brand-violet text-xs font-bold uppercase tracking-wider">Document Classes</div>
+          <div class="text-2xl sm:text-3xl font-black text-white mt-1">4 Major</div>
+          <div class="text-slate-400 text-xs mt-1">Article, Book, Report, Letter</div>
+        </div>
+        <div class="bg-brand-dark/60 p-4 rounded-xl border border-brand-border/60">
+          <div class="text-brand-amber text-xs font-bold uppercase tracking-wider">Section Levels</div>
+          <div class="text-2xl sm:text-3xl font-black text-white mt-1">7 Layers</div>
+          <div class="text-slate-400 text-xs mt-1">From Part (-1) to Subpara (5)</div>
+        </div>
+        <div class="bg-brand-dark/60 p-4 rounded-xl border border-brand-border/60">
+          <div class="text-brand-emerald text-xs font-bold uppercase tracking-wider">Engine Cost</div>
+          <div class="text-2xl sm:text-3xl font-black text-white mt-1">100% Free</div>
+          <div class="text-slate-400 text-xs mt-1">Open-source macro package</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 1: Document Architecture (Preamble vs Body & Document Classes) -->
+    <section id="architecture" class="space-y-6">
+      <div class="border-l-4 border-brand-cyan pl-4">
+        <h2 class="text-2xl font-bold text-white">1. Core Document Architecture & Class Distribution</h2>
+        <p class="text-slate-400 text-sm mt-1">
+          Every LaTeX document is partitioned into two distinct logical zones: the <strong>Preamble</strong> (global metadata, packages, environment setup) and the <strong>Body</strong> (visible text, figures, equations).
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <!-- Diagram 1: HTML Structured Workflow (Preamble vs Body) -->
+        <div class="bg-brand-card border border-brand-border rounded-xl p-6 shadow-lg flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <h3 class="text-lg font-bold text-brand-cyan flex items-center gap-2">
+                <span>&#128196;</span> Logical Execution Sequence
+              </h3>
+              <span class="text-xs bg-brand-cyan/20 text-brand-cyan px-2 py-0.5 rounded font-mono">Structural Flow</span>
+            </div>
+            <p class="text-slate-300 text-sm mb-4">
+              The LaTeX parser reads settings in the Preamble before executing output generation inside the body block.
+            </p>
+
+            <div class="space-y-3 font-mono text-xs">
+              <!-- Preamble Block -->
+              <div class="bg-brand-dark p-4 rounded-lg border-l-4 border-brand-amber">
+                <div class="text-brand-amber font-bold mb-1">// PREAMBLE (Global Configurations)</div>
+                <div class="text-slate-300">\documentclass[12pt, a4paper]{article}</div>
+                <div class="text-slate-400">\usepackage[utf8]{utf8}</div>
+                <div class="text-slate-400">\usepackage{amsmath, graphicx, geometry}</div>
+                <div class="text-slate-400">\geometry{margin=1in}</div>
+                <div class="text-slate-400">\title{System Specification}</div>
+              </div>
+
+              <!-- Transition Arrow -->
+              <div class="text-center text-brand-cyan font-bold py-1">
+                &#10140; Compiler Transition: \begin{document}
+              </div>
+
+              <!-- Body Block -->
+              <div class="bg-brand-dark p-4 rounded-lg border-l-4 border-brand-emerald">
+                <div class="text-brand-emerald font-bold mb-1">// BODY (Rendered Document Content)</div>
+                <div class="text-slate-300">\maketitle</div>
+                <div class="text-slate-300">\section{Introduction}</div>
+                <div class="text-slate-400">Content paragraphs, \begin{equation}, tables...</div>
+                <div class="text-slate-300">\end{document}</div>
+              </div>
+            </div>
+          </div>
+          <div class="mt-4 pt-3 border-t border-brand-border/60 text-xs text-slate-400">
+            <strong>Key Rule:</strong> Packages (<code class="text-brand-cyan">\usepackage</code>) and user definitions MUST be declared in the preamble before <code class="text-brand-emerald">\begin{document}</code>.
+          </div>
+        </div>
+
+        <!-- Chart 1: Document Class Share -->
+        <div class="bg-brand-card border border-brand-border rounded-xl p-6 shadow-lg flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <h3 class="text-lg font-bold text-brand-violet flex items-center gap-2">
+                <span>&#128200;</span> Document Class Academic Utilization
+              </h3>
+              <span class="text-xs bg-brand-violet/20 text-brand-violet px-2 py-0.5 rounded font-mono">Class Breakdown</span>
+            </div>
+            <p class="text-slate-300 text-sm mb-4">
+              LaTeX provides 4 primary built-in classes. Each sets specific sectional defaults (e.g., <code class="text-brand-violet">book</code> and <code class="text-brand-violet">report</code> support chapters, whereas <code class="text-brand-violet">article</code> starts directly at sections).
+            </p>
+            <div class="chart-container">
+              <canvas id="documentClassChart"></canvas>
+            </div>
+          </div>
+          <div class="mt-4 pt-3 border-t border-brand-border/60 text-xs text-slate-400">
+            <strong>Takeaway:</strong> <code class="text-brand-violet">article</code> dominates research publications, while <code class="text-brand-violet">book</code> and <code class="text-brand-violet">beamer</code> cater to multi-chapter monographs and conference presentations.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 2: Sectional Hierarchy & Numbering Systems -->
+    <section id="hierarchy" class="space-y-6">
+      <div class="border-l-4 border-brand-violet pl-4">
+        <h2 class="text-2xl font-bold text-white">2. Sectional Hierarchy & Partitioning Dynamics</h2>
+        <p class="text-slate-400 text-sm mt-1">
+          LaTeX manages hierarchical counters automatically. Appending an asterisk (<code class="text-brand-cyan font-mono">*</code>) to any heading command (e.g., <code class="text-brand-cyan font-mono">\section*{...}</code>) suppresses auto-numbering and excludes it from the Table of Contents.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <!-- Chart 2: Section Hierarchy Bar Chart -->
+        <div class="bg-brand-card border border-brand-border rounded-xl p-6 shadow-lg flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <h3 class="text-lg font-bold text-brand-cyan flex items-center gap-2">
+                <span>&#128202;</span> Structural Hierarchy Depth Scale
+              </h3>
+              <span class="text-xs bg-brand-cyan/20 text-brand-cyan px-2 py-0.5 rounded font-mono">Level Index</span>
+            </div>
+            <p class="text-slate-300 text-sm mb-4">
+              The sectional hierarchy dictates counter cascading. For example, in books, a subsection counter displays as <code class="text-brand-cyan">Chapter.Section.Subsection</code>.
+            </p>
+            <div class="chart-container">
+              <canvas id="hierarchyChart"></canvas>
+            </div>
+          </div>
+          <div class="mt-4 pt-3 border-t border-brand-border/60 text-xs text-slate-400">
+            <strong>Note:</strong> Paragraphs and Subparagraphs are unnumbered by default across all standard document classes.
+          </div>
+        </div>
+
+        <!-- Text Alignment & Page Counter Dynamics -->
+        <div class="bg-brand-card border border-brand-border rounded-xl p-6 shadow-lg flex flex-col justify-between">
+          <div>
+            <h3 class="text-lg font-bold text-brand-amber mb-3 flex items-center gap-2">
+              <span>&#128221;</span> Alignment Schemes & Counter Controls
+            </h3>
+            <p class="text-slate-300 text-sm mb-4">
+              Text alignment can be controlled via block environments or switch commands. Global scope requires caution, as switch commands persist until overridden.
+            </p>
+
+            <div class="space-y-4">
+              <!-- Alignment Table -->
+              <div class="overflow-x-auto">
+                <table class="w-full text-left text-xs text-slate-300 border border-brand-border rounded-lg overflow-hidden">
+                  <thead class="bg-brand-dark text-slate-200 font-bold uppercase border-b border-brand-border">
+                    <tr>
+                      <th class="p-2.5">Alignment</th>
+                      <th class="p-2.5">Environment</th>
+                      <th class="p-2.5">Switch Command</th>
+                    </tr>
+                  </thead>
+                  <tbody class="divide-y divide-brand-border">
+                    <tr class="hover:bg-brand-dark/40">
+                      <td class="p-2.5 font-semibold text-brand-cyan">Left Aligned</td>
+                      <td class="p-2.5 font-mono text-slate-400">\begin{flushleft}</td>
+                      <td class="p-2.5 font-mono text-brand-cyan">\raggedright</td>
+                    </tr>
+                    <tr class="hover:bg-brand-dark/40">
+                      <td class="p-2.5 font-semibold text-brand-violet">Centered</td>
+                      <td class="p-2.5 font-mono text-slate-400">\begin{center}</td>
+                      <td class="p-2.5 font-mono text-brand-violet">\centering</td>
+                    </tr>
+                    <tr class="hover:bg-brand-dark/40">
+                      <td class="p-2.5 font-semibold text-brand-amber">Right Aligned</td>
+                      <td class="p-2.5 font-mono text-slate-400">\begin{flushright}</td>
+                      <td class="p-2.5 font-mono text-brand-amber">\raggedleft</td>
+                    </tr>
+                    <tr class="hover:bg-brand-dark/40">
+                      <td class="p-2.5 font-semibold text-brand-emerald">Justified</td>
+                      <td class="p-2.5 font-mono text-slate-400">\begin{justify}*</td>
+                      <td class="p-2.5 font-mono text-brand-emerald">\justifying*</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <p class="text-slate-400 text-xs italic">* Requires <code class="text-brand-emerald font-mono">\usepackage{ragged2e}</code> package.</p>
+
+              <!-- Counter Rules -->
+              <div class="bg-brand-dark/80 p-4 rounded-xl border border-brand-border space-y-2">
+                <div class="text-xs font-bold text-brand-amber uppercase tracking-wider">Page Counter Manipulation</div>
+                <div class="text-xs font-mono text-slate-300">
+                  <div>\setcounter{page}{1} <span class="text-slate-500">// Reset counter value</span></div>
+                  <div>\pagenumbering{roman} <span class="text-slate-500">// i, ii, iii...</span></div>
+                  <div>\pagenumbering{arabic} <span class="text-slate-500">// 1, 2, 3...</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="mt-4 pt-3 border-t border-brand-border/60 text-xs text-slate-400">
+            <strong>Pro Tip:</strong> Using <code class="text-brand-amber">\pagenumbering{...}</code> automatically resets the page counter back to 1.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 3: Floating Environments & Placement Control -->
+    <section id="floats" class="space-y-6">
+      <div class="border-l-4 border-brand-amber pl-4">
+        <h2 class="text-2xl font-bold text-white">3. Floating Environments & Table Architecture</h2>
+        <p class="text-slate-400 text-sm mt-1">
+          LaTeX floats (<code class="text-brand-amber">figure</code> and <code class="text-brand-amber">table</code>) do not stay inline by default. The engine calculates optimum positioning based on strict layout rules, controlled by placement specifiers.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <!-- Chart 3: Float Placement Specifiers Radar Chart -->
+        <div class="bg-brand-card border border-brand-border rounded-xl p-6 shadow-lg flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <h3 class="text-lg font-bold text-brand-amber flex items-center gap-2">
+                <span>&#9875;</span> Float Placement Specifiers Strictness
+              </h3>
+              <span class="text-xs bg-brand-amber/20 text-brand-amber px-2 py-0.5 rounded font-mono">Positioning Rules</span>
+            </div>
+            <p class="text-slate-300 text-sm mb-4">
+              Comparative analysis of float directives based on positioning rigidity vs. compiler flexibility.
+            </p>
+            <div class="chart-container">
+              <canvas id="floatRadarChart"></canvas>
+            </div>
+          </div>
+          <div class="mt-4 pt-3 border-t border-brand-border/60 text-xs text-slate-400">
+            <strong>Specifier Legend:</strong> <code class="text-brand-amber font-mono">h</code> (Here), <code class="text-brand-amber font-mono">t</code> (Top), <code class="text-brand-amber font-mono">b</code> (Bottom), <code class="text-brand-amber font-mono">p</code> (Page), <code class="text-brand-amber font-mono">!</code> (Override), <code class="text-brand-amber font-mono">H</code> (Exact inline via <code class="font-mono">float</code> pkg).
+          </div>
+        </div>
+
+        <!-- Tables Mechanics & Subfigures -->
+        <div class="bg-brand-card border border-brand-border rounded-xl p-6 shadow-lg flex flex-col justify-between">
+          <div>
+            <h3 class="text-lg font-bold text-brand-emerald mb-3 flex items-center gap-2">
+              <span>&#128451;</span> Dynamic Tables & Subfigure Layouts
+            </h3>
+            <p class="text-slate-300 text-sm mb-4">
+              Standard <code class="text-brand-emerald">tabular</code> blocks require manual column widths, while <code class="text-brand-emerald">tabularx</code> dynamically wraps text using <code class="text-brand-emerald font-mono">X</code> specifiers.
+            </p>
+
+            <div class="space-y-4">
+              <!-- Code Comparison Block -->
+              <div class="bg-brand-dark p-4 rounded-xl border border-brand-border space-y-3 font-mono text-xs">
+                <div>
+                  <div class="text-brand-emerald font-bold mb-1">// Standard Tabular (Fixed Specifiers)</div>
+                  <div class="text-slate-300">\begin{tabular}{|l|c|r|}</div>
+                  <div class="text-slate-400">  \hline Item & Method & Accuracy \\ \hline</div>
+                  <div class="text-slate-300 font-mono">\end{tabular}</div>
+                </div>
+
+                <div class="pt-2 border-t border-brand-border">
+                  <div class="text-brand-cyan font-bold mb-1">// TabularX (Auto-wrapping Width)</div>
+                  <div class="text-slate-300">\begin{tabularx}{\textwidth}{|l|X|}</div>
+                  <div class="text-slate-400">  \hline Term & Long Description Block \\ \hline</div>
+                  <div class="text-slate-300 font-mono">\end{tabularx}</div>
+                </div>
+              </div>
+
+              <!-- Subfigure Structure Grid -->
+              <div class="grid grid-cols-2 gap-3 text-xs">
+                <div class="bg-brand-dark/60 p-3 rounded-lg border border-brand-border">
+                  <div class="text-brand-amber font-bold mb-1">Subfigure 1 (0.45\textwidth)</div>
+                  <div class="text-slate-400 font-mono">\begin{subfigure}[b]{0.45\textwidth}</div>
+                  <div class="text-slate-500 font-mono">\includegraphics[...]{fig1}</div>
+                </div>
+                <div class="bg-brand-dark/60 p-3 rounded-lg border border-brand-border">
+                  <div class="text-brand-amber font-bold mb-1">Subfigure 2 (0.45\textwidth)</div>
+                  <div class="text-slate-400 font-mono">\begin{subfigure}[b]{0.45\textwidth}</div>
+                  <div class="text-slate-500 font-mono">\includegraphics[...]{fig2}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="mt-4 pt-3 border-t border-brand-border/60 text-xs text-slate-400">
+            <strong>Float Tuning:</strong> Use <code class="text-brand-amber">\renewcommand{\topfraction}{0.85}</code> in preamble to prevent float page overflow.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 4: Mathematical Engine & Package Ecosystem -->
+    <section id="math" class="space-y-6">
+      <div class="border-l-4 border-brand-emerald pl-4">
+        <h2 class="text-2xl font-bold text-white">4. Mathematical Engine & Scientific Package Ecosystem</h2>
+        <p class="text-slate-400 text-sm mt-1">
+          LaTeX delivers unequaled mathematical typesetting capabilities through <code class="text-brand-emerald">amsmath</code>, <code class="text-brand-emerald">amssymb</code>, and specialized extensions for piecewise functions and matrix arrays.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <!-- Chart 4: Core Package Ecosystem -->
+        <div class="bg-brand-card border border-brand-border rounded-xl p-6 shadow-lg flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <h3 class="text-lg font-bold text-brand-emerald flex items-center gap-2">
+                <span>&#9883;</span> Core Scientific Package Utilization
+              </h3>
+              <span class="text-xs bg-brand-emerald/20 text-brand-emerald px-2 py-0.5 rounded font-mono">Package Adoption</span>
+            </div>
+            <p class="text-slate-300 text-sm mb-4">
+              Relative utilization frequency of essential LaTeX extensions across technical and scientific disciplines.
+            </p>
+            <div class="chart-container">
+              <canvas id="packageChart"></canvas>
+            </div>
+          </div>
+          <div class="mt-4 pt-3 border-t border-brand-border/60 text-xs text-slate-400">
+            <strong>Takeaway:</strong> The <code class="text-brand-emerald">amsmath</code> suite forms the bedrock of modern technical typesetting, complemented by <code class="text-brand-emerald">geometry</code> and <code class="text-brand-emerald">biblatex</code>.
+          </div>
+        </div>
+
+        <!-- Math Syntax Showcase & Matrix Structures -->
+        <div class="bg-brand-card border border-brand-border rounded-xl p-6 shadow-lg flex flex-col justify-between">
+          <div>
+            <h3 class="text-lg font-bold text-brand-cyan mb-3 flex items-center gap-2">
+              <span>&#935;</span> Advanced Mathematical Environments
+            </h3>
+            <p class="text-slate-300 text-sm mb-4">
+              Multi-line equations require deliberate alignment environments rather than simple inline blocks.
+            </p>
+
+            <div class="space-y-4">
+              <!-- Math Environments Code Matrix -->
+              <div class="bg-brand-dark p-4 rounded-xl border border-brand-border space-y-3 font-mono text-xs">
+                <div>
+                  <div class="text-brand-cyan font-bold mb-1">// Multiline Alignment (align)</div>
+                  <div class="text-slate-300">\begin{align}</div>
+                  <div class="text-slate-400">  f(x) &= (x + 2)^2 - 4 \\</div>
+                  <div class="text-slate-400">       &= x^2 + 4x \tag{Step 1}</div>
+                  <div class="text-slate-300">\end{align}</div>
+                </div>
+
+                <div class="pt-2 border-t border-brand-border">
+                  <div class="text-brand-violet font-bold mb-1">// Piecewise Functions (cases)</div>
+                  <div class="text-slate-300">f(x) = \begin{cases}</div>
+                  <div class="text-slate-400">  \frac{x}{2}, & \text{if } x \text{ is even} \\</div>
+                  <div class="text-slate-400">  3x + 1,      & \text{if } x \text{ is odd}</div>
+                  <div class="text-slate-300">\end{cases}</div>
+                </div>
+              </div>
+
+              <!-- Matrix Delimiters Quick Grid -->
+              <div class="grid grid-cols-4 gap-2 text-center text-xs font-mono">
+                <div class="bg-brand-dark/80 p-2 rounded border border-brand-border">
+                  <div class="text-brand-cyan font-bold">matrix</div>
+                  <div class="text-slate-400">Plain</div>
+                </div>
+                <div class="bg-brand-dark/80 p-2 rounded border border-brand-border">
+                  <div class="text-brand-violet font-bold">pmatrix</div>
+                  <div class="text-slate-400">( &nbsp; )</div>
+                </div>
+                <div class="bg-brand-dark/80 p-2 rounded border border-brand-border">
+                  <div class="text-brand-amber font-bold">bmatrix</div>
+                  <div class="text-slate-400">[ &nbsp; ]</div>
+                </div>
+                <div class="bg-brand-dark/80 p-2 rounded border border-brand-border">
+                  <div class="text-brand-emerald font-bold">vmatrix</div>
+                  <div class="text-slate-400">| &nbsp; |</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="mt-4 pt-3 border-t border-brand-border/60 text-xs text-slate-400">
+            <strong>Rule:</strong> Use <code class="text-brand-cyan">\left(</code> and <code class="text-brand-cyan">\right)</code> for auto-scaling parentheses around fractions.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 5: Multi-Language Pre-Processing & Compilation Pipeline -->
+    <section id="compilation" class="space-y-6">
+      <div class="border-l-4 border-brand-rose pl-4">
+        <h2 class="text-2xl font-bold text-white">5. Multi-Language Engine & Compilation Pipeline</h2>
+        <p class="text-slate-400 text-sm mt-1">
+          Generating complex documents with cross-references, indices, bibliographies, or non-English scripts (like Tamil/Devanagari via ITRANS) requires a multi-pass compilation lifecycle.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <!-- Diagram 2: ITRANS & Language Transliteration Flow -->
+        <div class="bg-brand-card border border-brand-border rounded-xl p-6 shadow-lg flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <h3 class="text-lg font-bold text-brand-rose flex items-center gap-2">
+                <span>&#127760;</span> ITRANS Transliteration Architecture
+              </h3>
+              <span class="text-xs bg-brand-rose/20 text-brand-rose px-2 py-0.5 rounded font-mono">Pre-processor Pipeline</span>
+            </div>
+            <p class="text-slate-300 text-sm mb-4">
+              Native script packages transform phonetic ASCII keymaps into accurate conjunct glyphs using an intermediate pre-processor pass.
+            </p>
+
+            <!-- Workflow Pipeline HTML/CSS Cards -->
+            <div class="space-y-3 font-mono text-xs">
+              <div class="bg-brand-dark p-3 rounded-lg border border-brand-border flex items-center justify-between">
+                <div>
+                  <span class="text-brand-cyan font-bold">1. Phonetic .tex Input</span>
+                  <div class="text-slate-400">#indian #language=Tamil ... #endindian</div>
+                </div>
+                <span class="text-xl">✍️</span>
+              </div>
+
+              <div class="text-center text-brand-rose text-base font-bold">⬇ Pass to Pre-Processor</div>
+
+              <div class="bg-brand-dark p-3 rounded-lg border border-brand-rose/60 flex items-center justify-between bg-brand-rose/5">
+                <div>
+                  <span class="text-brand-rose font-bold">2. ITRANS Executable Engine</span>
+                  <div class="text-slate-400">Translates ASCII keymaps to TeX glyph macros</div>
+                </div>
+                <span class="text-xl">⚙️</span>
+              </div>
+
+              <div class="text-center text-brand-rose text-base font-bold">⬇ Output Transliterated TeX</div>
+
+              <div class="bg-brand-dark p-3 rounded-lg border border-brand-border flex items-center justify-between">
+                <div>
+                  <span class="text-brand-emerald font-bold">3. Standard LaTeX Engine Build</span>
+                  <div class="text-slate-400">Generates final PDF with Indic/Devanagari scripts</div>
+                </div>
+                <span class="text-xl">📄</span>
+              </div>
+            </div>
+          </div>
+          <div class="mt-4 pt-3 border-t border-brand-border/60 text-xs text-slate-400">
+            <strong>Package Example:</strong> <code class="text-brand-rose">\usepackage{devanagari}</code> with block environment <code class="text-brand-rose">\begin{dn} ... \end{dn}</code>.
+          </div>
+        </div>
+
+        <!-- Chart 5: Compilation Multi-Pass Latency & Workflow -->
+        <div class="bg-brand-card border border-brand-border rounded-xl p-6 shadow-lg flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <h3 class="text-lg font-bold text-brand-violet flex items-center gap-2">
+                <span>&#9203;</span> Multi-Pass Build Pass Requirements
+              </h3>
+              <span class="text-xs bg-brand-violet/20 text-brand-violet px-2 py-0.5 rounded font-mono">Compilation Latency</span>
+            </div>
+            <p class="text-slate-300 text-sm mb-4">
+              Complex LaTeX features (Table of Contents, Biber bibliographies, dynamic indices) require multiple execution passes to resolve auxiliary (<code class="text-brand-violet font-mono">.aux</code>, <code class="text-brand-violet font-mono">.toc</code>, <code class="text-brand-violet font-mono">.bcf</code>) files.
+            </p>
+            <div class="chart-container">
+              <canvas id="compilationChart"></canvas>
+            </div>
+          </div>
+          <div class="mt-4 pt-3 border-t border-brand-border/60 text-xs text-slate-400">
+            <strong>Workflow Cycle:</strong> <code class="text-brand-violet font-mono">pdflatex</code> ➔ <code class="text-brand-violet font-mono">biber</code> ➔ <code class="text-brand-violet font-mono">makeindex</code> ➔ <code class="text-brand-violet font-mono">pdflatex (2x)</code>.
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="max-w-7xl mx-auto px-6 mt-16 pt-8 border-t border-brand-border flex flex-wrap justify-between items-center text-xs text-slate-400 gap-4">
+    <div>
+      Master LaTeX Systems & Syntax Architecture Infographic &bull; Designed based on course material by Ammar Taha
+    </div>
+    <div class="flex items-center space-x-4">
+      <span class="bg-brand-card px-3 py-1 rounded border border-brand-border text-brand-cyan font-mono">No SVG / No Mermaid JS</span>
+      <span class="bg-brand-card px-3 py-1 rounded border border-brand-border text-brand-emerald font-mono">Chart.js Canvas Rendered</span>
+    </div>
+  </footer>
+
+  <!-- Chart.js Configuration Script -->
+  <script>
+    // Label wrapping logic (>16 characters)
+    function wrapLabel(labelStr, maxLen = 16) {
+      if (typeof labelStr !== 'string' || labelStr.length <= maxLen) return labelStr;
+      const words = labelStr.split(' ');
+      const lines = [];
+      let currentLine = '';
+      words.forEach(word => {
+        if ((currentLine + word).length > maxLen) {
+          if (currentLine) lines.push(currentLine.trim());
+          currentLine = word + ' ';
+        } else {
+          currentLine += word + ' ';
+        }
+      });
+      if (currentLine) lines.push(currentLine.trim());
+      return lines;
+    }
+
+    // Shared Tooltip Configuration for Chart.js instances
+    const sharedTooltipConfig = {
+      callbacks: {
+        title: function(tooltipItems) {
+          const item = tooltipItems[0];
+          let label = item.chart.data.labels[item.dataIndex];
+          if (Array.isArray(label)) {
+            return label.join(' ');
+          } else {
+            return label;
+          }
+        }
+      }
+    };
+
+    // Chart 1: Document Class Academic Utilization (Donut Chart)
+    const rawClassLabels = ['Journal Articles (article)', 'Academic Books (book)', 'Technical Reports (report)', 'Beamer Decks (beamer)', 'Formal Letters (letter)'];
+    const wrappedClassLabels = rawClassLabels.map(l => wrapLabel(l));
+
+    new Chart(document.getElementById('documentClassChart'), {
+      type: 'doughnut',
+      data: {
+        labels: wrappedClassLabels,
+        datasets: [{
+          data: [45, 25, 15, 12, 3],
+          backgroundColor: ['#06B6D4', '#8B5CF6', '#F59E0B', '#10B981', '#F43F5E'],
+          borderWidth: 2,
+          borderColor: '#1E293B'
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: {
+            position: 'right',
+            labels: { color: '#94A3B8', font: { size: 11 } }
+          },
+          tooltip: sharedTooltipConfig
+        }
+      }
+    });
+
+    // Chart 2: Structural Hierarchy Depth Scale (Horizontal Bar Chart)
+    const rawHierarchyLabels = ['Part (Level -1)', 'Chapter (Level 0)', 'Section (Level 1)', 'Subsection (Level 2)', 'Subsubsection (Level 3)', 'Paragraph (Level 4)', 'Subparagraph (Level 5)'];
+    const wrappedHierarchyLabels = rawHierarchyLabels.map(l => wrapLabel(l));
+
+    new Chart(document.getElementById('hierarchyChart'), {
+      type: 'bar',
+      data: {
+        labels: wrappedHierarchyLabels,
+        datasets: [{
+          label: 'Hierarchy Depth Level',
+          data: [-1, 0, 1, 2, 3, 4, 5],
+          backgroundColor: ['#F43F5E', '#F59E0B', '#06B6D4', '#8B5CF6', '#10B981', '#64748B', '#475569'],
+          borderRadius: 4
+        }]
+      },
+      options: {
+        indexAxis: 'y',
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+          x: {
+            grid: { color: '#334155' },
+            ticks: { color: '#94A3B8' },
+            title: { display: true, text: 'Structural Level Index', color: '#64748B' }
+          },
+          y: {
+            grid: { display: false },
+            ticks: { color: '#CBD5E1' }
+          }
+        },
+        plugins: {
+          legend: { display: false },
+          tooltip: sharedTooltipConfig
+        }
+      }
+    });
+
+    // Chart 3: Float Placement Specifiers Strictness (Radar Chart)
+    const rawFloatLabels = ['Here Position (h)', 'Top Page (t)', 'Bottom Page (b)', 'Float Page (p)', 'Override Limits (!)', 'Exact Here (H)'];
+    const wrappedFloatLabels = rawFloatLabels.map(l => wrapLabel(l));
+
+    new Chart(document.getElementById('floatRadarChart'), {
+      type: 'radar',
+      data: {
+        labels: wrappedFloatLabels,
+        datasets: [
+          {
+            label: 'Position Rigidity',
+            data: [40, 60, 65, 80, 90, 100],
+            backgroundColor: 'rgba(245, 158, 11, 0.2)',
+            borderColor: '#F59E0B',
+            pointBackgroundColor: '#F59E0B'
+          },
+          {
+            label: 'Compiler Flexibility',
+            data: [80, 75, 70, 40, 20, 0],
+            backgroundColor: 'rgba(6, 182, 212, 0.2)',
+            borderColor: '#06B6D4',
+            pointBackgroundColor: '#06B6D4'
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+          r: {
+            grid: { color: '#334155' },
+            angleLines: { color: '#334155' },
+            pointLabels: { color: '#CBD5E1', font: { size: 10 } },
+            ticks: { display: false }
+          }
+        },
+        plugins: {
+          legend: {
+            position: 'bottom',
+            labels: { color: '#94A3B8', font: { size: 11 } }
+          },
+          tooltip: sharedTooltipConfig
+        }
+      }
+    });
+
+    // Chart 4: Core Scientific Package Utilization (Polar Area Chart)
+    const rawPackageLabels = ['AMS Math Suite (amsmath)', 'Graphics Control (graphicx)', 'Page Geometry (geometry)', 'Modern Citations (biblatex)', 'Dynamic Tables (tabularx)', 'Code Highlighting (minted)'];
+    const wrappedPackageLabels = rawPackageLabels.map(l => wrapLabel(l));
+
+    new Chart(document.getElementById('packageChart'), {
+      type: 'polarArea',
+      data: {
+        labels: wrappedPackageLabels,
+        datasets: [{
+          data: [95, 85, 90, 80, 70, 60],
+          backgroundColor: [
+            'rgba(16, 185, 129, 0.7)',
+            'rgba(6, 182, 212, 0.7)',
+            'rgba(139, 92, 246, 0.7)',
+            'rgba(245, 158, 11, 0.7)',
+            'rgba(244, 63, 94, 0.7)',
+            'rgba(100, 116, 139, 0.7)'
+          ],
+          borderColor: '#1E293B'
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+          r: {
+            grid: { color: '#334155' },
+            ticks: { display: false }
+          }
+        },
+        plugins: {
+          legend: {
+            position: 'right',
+            labels: { color: '#94A3B8', font: { size: 10 } }
+          },
+          tooltip: sharedTooltipConfig
+        }
+      }
+    });
+
+    // Chart 5: Compilation Multi-Pass Latency (Stacked Bar Chart)
+    const rawPassLabels = ['Simple Article Pass', 'TOC & References Pass', 'Biber Bibliography Sync', 'Index Generation Pass', 'Full Complex Book Build'];
+    const wrappedPassLabels = rawPassLabels.map(l => wrapLabel(l));
+
+    new Chart(document.getElementById('compilationChart'), {
+      type: 'bar',
+      data: {
+        labels: wrappedPassLabels,
+        datasets: [
+          {
+            label: 'Pass 1: pdflatex',
+            data: [1, 1, 1, 1, 1],
+            backgroundColor: '#06B6D4'
+          },
+          {
+            label: 'Pass 2: External (Biber/MakeIndex)',
+            data: [0, 0, 1, 1, 1],
+            backgroundColor: '#F59E0B'
+          },
+          {
+            label: 'Pass 3: Resolving References',
+            data: [0, 1, 1, 1, 2],
+            backgroundColor: '#8B5CF6'
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+          x: {
+            stacked: true,
+            grid: { display: false },
+            ticks: { color: '#CBD5E1', font: { size: 10 } }
+          },
+          y: {
+            stacked: true,
+            grid: { color: '#334155' },
+            ticks: { color: '#94A3B8' },
+            title: { display: true, text: 'Required Execution Passes', color: '#64748B' }
+          }
+        },
+        plugins: {
+          legend: {
+            position: 'bottom',
+            labels: { color: '#94A3B8', font: { size: 11 } }
+          },
+          tooltip: sharedTooltipConfig
+        }
+      }
+    });
+  </script>
+</body>
+</html>

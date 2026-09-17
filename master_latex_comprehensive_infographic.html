@@ -1,0 +1,984 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Master LaTeX Spectrum: Complete Systems & Syntax Infographic</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              bg: '#0B1120',
+              card: '#1E293B',
+              cardLight: '#243147',
+              border: '#334155',
+              cyan: '#06B6D4',
+              violet: '#8B5CF6',
+              amber: '#F59E0B',
+              emerald: '#10B981',
+              rose: '#F43F5E',
+              indigo: '#6366F1'
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    .chart-container {
+      position: relative;
+      width: 100%;
+      max-width: 650px;
+      margin-left: auto;
+      margin-right: auto;
+      height: 320px;
+      max-height: 380px;
+    }
+    @media (min-width: 768px) {
+      .chart-container {
+        height: 350px;
+      }
+    }
+    /* Custom scrollbar for dark tech feel */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #0B1120;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #334155;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #06B6D4;
+    }
+  </style>
+</head>
+<body class="bg-brand-bg text-slate-100 font-sans antialiased min-h-screen pb-16">
+
+<!-- 
+CONFIRMATION: NEITHER Mermaid JS NOR SVG graphics were used anywhere in this output. 
+All workflows and topological diagrams are constructed using responsive Tailwind HTML/CSS grid/flexbox cards, and all 5 data visualizations render via Chart.js on HTML5 Canvas.
+-->
+
+<!-- 
+COLOR PALETTE: "Electric Sapphire & Cyber Slate"
+- Background Deep: #0B1120 (Slate 950)
+- Card Surface: #1E293B (Slate 800)
+- Surface Light: #243147
+- Primary Accent (Cyan): #06B6D4
+- Secondary Accent (Violet): #8B5CF6
+- Accent Amber: #F59E0B
+- Accent Emerald: #10B981
+- Accent Rose: #F43F5E
+- Accent Indigo: #6366F1
+-->
+
+<!--
+NARRATIVE & STRUCTURE PLAN:
+1. Hero & Systems Foundation: Highlighting LaTeX's code-first deterministic typesetting paradigm created by Ammar Taha (2.5+ years course development) and core engine statistics.
+2. Architecture & Preamble Spectrum: Document partitioning, Preamble execution lifecycle, global variables, custom commands (\newcommand, \renewcommand), and Document Class ecosystem distribution.
+3. Typography, Layout Physics & Spacing Mechanics: Line breaks, alignment switches (\raggedright vs \begin{flushleft}), box models (\mbox, \minipage), and parindent/parskip physics.
+4. Floating Environments, Tables & Placement Mechanics: Demystifying float specifiers (h, t, b, p, !, H), tabular vs tabularx (auto-wrapping X column), multirow/bigdelim, and subfigure grid layouts.
+5. Mathematical Engine, Commutative Topology & Matrices: Multi-line equation schemes (align, gather, split), matrix variations, commutative diagrams (amscd & xypick arrow routing), piecewise cases, and calculus operators.
+6. Algorithms, Verbatim & Pygments Syntax Engine: Verbatim blocks, minted Pygments setup, algorithm2e pseudocode keywords (\KwIn, \KwOut, \If, \For), and amsthm custom theorem styles.
+7. Multi-Pass Compilation Lifecycle, Bibliographies & Internationalization: Auxiliary file mechanics (.aux, .toc, .bcf, .bbl, .ind), biblatex/biber workflow, imakeidx indexing (.ist style files), cross-referencing (varioref/cleveref), and ITRANS transliteration pipeline.
+8. Beamer Presentation Engine & Domain Efficiency: Beamer slide frames, overlays (\pause, <1->), block environments, and a comparative efficiency radar of LaTeX vs WYSIWYG editors.
+-->
+
+<!--
+VISUALIZATION & CHART SELECTION JUSTIFICATION:
+- Chart 1 (Document Class Academic Utilization): Doughnut Chart (Chart.js Canvas). Goal: Show market share and structural differences across Article, Book, Report, Beamer, and Letter classes.
+- Chart 2 (Float Placement Directive Rigidity): Radar Chart (Chart.js Canvas). Goal: Compare positioning parameters (h, t, b, p, !, H) across rigidity vs compiler flexibility dimensions.
+- Chart 3 (Scientific & Mathematical Package Ecosystem): Polar Area Chart (Chart.js Canvas). Goal: Illustrate usage frequency and dominance of amsmath, graphicx, geometry, biblatex, tabularx, and minted.
+- Chart 4 (Multi-Pass Compilation Latency & Auxiliary File Lifecycle): Stacked Bar Chart (Chart.js Canvas). Goal: Visualize execution passes required to resolve TOC, Biber citations, MakeIndex, and cross-references.
+- Chart 5 (LaTeX Domain Technical Efficiency vs WYSIWYG): Radar Chart (Chart.js Canvas). Goal: Benchmark LaTeX against Word Processors across Mathematical Precision, Citation Automation, Document Scaling, Layout Stability, and Initial Learning Curve.
+- Diagram 1 (Document Architecture & Execution Flow): HTML/CSS Tailwind Flow Cards.
+- Diagram 2 (Auxiliary File Compilation Cycle): HTML/CSS Interactive Pipeline Cards.
+- Diagram 3 (ITRANS Transliteration Pre-processor Pipeline): HTML/CSS Step Cards.
+- Diagram 4 (Beamer Slide Overlay Sequence): HTML/CSS Visual Block Grid.
+-->
+
+  <!-- Sticky Navigation Header -->
+  <header class="sticky top-0 z-50 bg-brand-bg/95 backdrop-blur border-b border-brand-border px-4 sm:px-8 py-3.5">
+    <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-4">
+      <div class="flex items-center space-x-3">
+        <span class="text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r from-brand-cyan via-brand-violet to-brand-amber">LaTeX</span>
+        <span class="text-xs px-2.5 py-1 rounded-full bg-brand-cyan/15 text-brand-cyan border border-brand-cyan/30 font-semibold uppercase tracking-wider">Master Systems Spectrum</span>
+      </div>
+      <nav class="hidden lg:flex space-x-6 text-xs font-semibold text-slate-300">
+        <a href="#architecture" class="hover:text-brand-cyan transition">Architecture</a>
+        <a href="#typography" class="hover:text-brand-cyan transition">Typography & Layout</a>
+        <a href="#floats-tables" class="hover:text-brand-cyan transition">Floats & Tables</a>
+        <a href="#math-engine" class="hover:text-brand-cyan transition">Math Engine</a>
+        <a href="#code-algorithms" class="hover:text-brand-cyan transition">Code & Algorithms</a>
+        <a href="#compilation-bib" class="hover:text-brand-cyan transition">Compilation & Bib</a>
+        <a href="#beamer-slides" class="hover:text-brand-cyan transition">Beamer Slides</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 mt-8 space-y-12">
+
+    <!-- Hero Header -->
+    <section class="bg-gradient-to-br from-brand-card via-brand-cardLight to-slate-900 border border-brand-border rounded-2xl p-6 sm:p-10 shadow-2xl relative overflow-hidden">
+      <div class="max-w-4xl space-y-4">
+        <div class="inline-flex items-center gap-2 text-brand-cyan text-xs font-mono uppercase tracking-widest bg-brand-cyan/10 px-3 py-1 rounded-full border border-brand-cyan/20">
+          <span>&#9881;</span> Complete Technical Typesetting Blueprint
+        </div>
+        <h1 class="text-3xl sm:text-5xl font-black text-white tracking-tight leading-tight">
+          The Definitive <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-cyan via-brand-violet to-brand-amber">LaTeX Knowledge Spectrum</span>
+        </h1>
+        <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
+          Based on the master course by <strong>Ammar Taha</strong> (spanning 2.5+ years of production), LaTeX is a deterministic, code-first document compilation system. This comprehensive infographic synthesizes the complete syllabus and operational rules—from basic preamble architecture and text formatting mechanics to complex math matrices, commutative topology (<code class="text-brand-cyan font-mono">xypick</code>), dynamic tables, code highlighting (<code class="text-brand-cyan font-mono">minted</code>), multi-pass compilation pipelines, and Beamer presentations.
+        </p>
+      </div>
+
+      <!-- Hero Key Metric Cards -->
+      <div class="grid grid-cols-2 md:grid-cols-5 gap-3 mt-8 pt-6 border-t border-brand-border/80">
+        <div class="bg-brand-bg/80 p-3.5 rounded-xl border border-brand-border/80">
+          <div class="text-brand-cyan text-xs font-bold uppercase tracking-wider">Engine Basis</div>
+          <div class="text-xl sm:text-2xl font-black text-white mt-1">TeX Macro</div>
+          <div class="text-slate-400 text-[11px] mt-0.5">Donald Knuth, 1978</div>
+        </div>
+        <div class="bg-brand-bg/80 p-3.5 rounded-xl border border-brand-border/80">
+          <div class="text-brand-violet text-xs font-bold uppercase tracking-wider">Course Dev</div>
+          <div class="text-xl sm:text-2xl font-black text-white mt-1">2.5+ Years</div>
+          <div class="text-slate-400 text-[11px] mt-0.5">Ammar Taha</div>
+        </div>
+        <div class="bg-brand-bg/80 p-3.5 rounded-xl border border-brand-border/80">
+          <div class="text-brand-amber text-xs font-bold uppercase tracking-wider">Section Levels</div>
+          <div class="text-xl sm:text-2xl font-black text-white mt-1">7 Layers</div>
+          <div class="text-slate-400 text-[11px] mt-0.5">Part (-1) to Subpara (5)</div>
+        </div>
+        <div class="bg-brand-bg/80 p-3.5 rounded-xl border border-brand-border/80">
+          <div class="text-brand-emerald text-xs font-bold uppercase tracking-wider">Aux Engine</div>
+          <div class="text-xl sm:text-2xl font-black text-white mt-1">Biber & BibTeX</div>
+          <div class="text-slate-400 text-[11px] mt-0.5">Automated Citations</div>
+        </div>
+        <div class="bg-brand-bg/80 p-3.5 rounded-xl border border-brand-border/80">
+          <div class="text-brand-rose text-xs font-bold uppercase tracking-wider">License</div>
+          <div class="text-xl sm:text-2xl font-black text-white mt-1">LPPL / Free</div>
+          <div class="text-slate-400 text-[11px] mt-0.5">Open Source Standard</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 1: DOCUMENT ARCHITECTURE & PREAMBLE SPECTRUM -->
+    <section id="architecture" class="space-y-6">
+      <div class="border-l-4 border-brand-cyan pl-4">
+        <h2 class="text-2xl font-bold text-white">1. Document Architecture & Preamble Execution Spectrum</h2>
+        <p class="text-slate-400 text-sm mt-1">
+          A LaTeX document strictly separates global metadata and package definitions (Preamble) from visible rendered output (Body). The preamble executes setup routines before the compiler enters the primary text stream.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <!-- Diagram 1: Execution Pipeline -->
+        <div class="bg-brand-card border border-brand-border rounded-xl p-6 shadow-lg flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <h3 class="text-lg font-bold text-brand-cyan flex items-center gap-2">
+                <span>&#128196;</span> Logical Document Execution Flow
+              </h3>
+              <span class="text-xs bg-brand-cyan/20 text-brand-cyan px-2 py-0.5 rounded font-mono">Structural Flow</span>
+            </div>
+            <p class="text-slate-300 text-sm mb-4">
+              Packages (<code class="text-brand-cyan">\usepackage</code>) and custom user macros (<code class="text-brand-cyan">\newcommand</code>) must be declared in the Preamble prior to the <code class="text-brand-emerald font-mono">\begin{document}</code> boundary.
+            </p>
+
+            <div class="space-y-3 font-mono text-xs">
+              <!-- Preamble Block -->
+              <div class="bg-brand-bg p-4 rounded-lg border-l-4 border-brand-amber space-y-1">
+                <div class="text-brand-amber font-bold mb-1">// 1. PREAMBLE (Global Configurations & Macros)</div>
+                <div class="text-slate-300">\documentclass[12pt, a4paper]{article}</div>
+                <div class="text-slate-400">\usepackage[utf8]{utf8}</div>
+                <div class="text-slate-400">\usepackage{amsmath, graphicx, geometry, xcolor}</div>
+                <div class="text-slate-400">\geometry{margin=1in}</div>
+                <div class="text-brand-cyan">\newcommand{\R}{\mathbb{R}} <span class="text-slate-500">% Custom Macro</span></div>
+                <div class="text-slate-400">\title{Quantum Field Dynamics} \author{Ammar Taha} \date{\today}</div>
+              </div>
+
+              <!-- Transition boundary -->
+              <div class="text-center text-brand-cyan font-bold py-1">
+                &#10140; Compiler Transition: \begin{document}
+              </div>
+
+              <!-- Body Block -->
+              <div class="bg-brand-bg p-4 rounded-lg border-l-4 border-brand-emerald space-y-1">
+                <div class="text-brand-emerald font-bold mb-1">// 2. BODY (Rendered Document Content Stream)</div>
+                <div class="text-slate-300">\maketitle</div>
+                <div class="text-slate-300">\section{Introduction}</div>
+                <div class="text-slate-400">Content text, \begin{equation}, floating figures, tables...</div>
+                <div class="text-slate-300">\end{document}</div>
+              </div>
+            </div>
+          </div>
+          <div class="mt-4 pt-3 border-t border-brand-border/60 text-xs text-slate-400">
+            <strong>Key takeaway:</strong> Custom commands defined with <code class="text-brand-cyan">\newcommand{\name}[args]{def}</code> eliminate repetitive syntax across the body.
+          </div>
+        </div>
+
+        <!-- Chart 1: Document Class Utilization -->
+        <div class="bg-brand-card border border-brand-border rounded-xl p-6 shadow-lg flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <h3 class="text-lg font-bold text-brand-violet flex items-center gap-2">
+                <span>&#128200;</span> Document Class Ecosystem Distribution
+              </h3>
+              <span class="text-xs bg-brand-violet/20 text-brand-violet px-2 py-0.5 rounded font-mono">Class Share</span>
+            </div>
+            <p class="text-slate-300 text-sm mb-4">
+              LaTeX provides 4 primary built-in document classes alongside slide engines like <code class="text-brand-violet">beamer</code>. Each class imposes specific top-level sectional hierarchies.
+            </p>
+            <div class="chart-container">
+              <canvas id="docClassChart"></canvas>
+            </div>
+          </div>
+          <div class="mt-4 pt-3 border-t border-brand-border/60 text-xs text-slate-400">
+            <strong>Class Differences:</strong> <code class="text-brand-violet">article</code> starts top-level partitioning at <code class="text-brand-violet">\section</code>, while <code class="text-brand-violet">book</code> and <code class="text-brand-violet">report</code> enable <code class="text-brand-violet">\chapter</code>.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 2: TYPOGRAPHY, LAYOUT PHYSICS & SPACING MECHANICS -->
+    <section id="typography" class="space-y-6">
+      <div class="border-l-4 border-brand-violet pl-4">
+        <h2 class="text-2xl font-bold text-white">2. Typography, Layout Physics & Spacing Mechanics</h2>
+        <p class="text-slate-400 text-sm mt-1">
+          Unlike WYSIWYG editors, LaTeX calculates line wrapping, hyphenation, paragraph spacing, and margins using Knuth's dynamic penalty and glue algorithms.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <!-- Text Alignment Matrix -->
+        <div class="bg-brand-card border border-brand-border rounded-xl p-5 shadow-lg space-y-3">
+          <h3 class="text-base font-bold text-brand-cyan flex items-center gap-2">
+            <span>&#128221;</span> Alignment Schemes
+          </h3>
+          <p class="text-slate-300 text-xs">
+            LaTeX defaults to full justification. Local overrides can use environments or scope switch commands.
+          </p>
+          <div class="space-y-2 text-xs font-mono">
+            <div class="bg-brand-bg p-2.5 rounded border border-brand-border">
+              <div class="text-brand-cyan font-bold">Left Aligned</div>
+              <div class="text-slate-400">\begin{flushleft}</div>
+              <div class="text-slate-300">Switch: {\raggedright ...}</div>
+            </div>
+            <div class="bg-brand-bg p-2.5 rounded border border-brand-border">
+              <div class="text-brand-violet font-bold">Centered</div>
+              <div class="text-slate-400">\begin{center}</div>
+              <div class="text-slate-300">Switch: {\centering ...}</div>
+            </div>
+            <div class="bg-brand-bg p-2.5 rounded border border-brand-border">
+              <div class="text-brand-amber font-bold">Right Aligned</div>
+              <div class="text-slate-400">\begin{flushright}</div>
+              <div class="text-slate-300">Switch: {\raggedleft ...}</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Paragraph Physics & Spacing -->
+        <div class="bg-brand-card border border-brand-border rounded-xl p-5 shadow-lg space-y-3">
+          <h3 class="text-base font-bold text-brand-amber flex items-center gap-2">
+            <span>&#128207;</span> Paragraph & Line Spacing
+          </h3>
+          <p class="text-slate-300 text-xs">
+            Control global paragraph indentation depth, vertical paragraph separation gaps, and forced line breaks.
+          </p>
+          <div class="space-y-2 text-xs font-mono">
+            <div class="bg-brand-bg p-2.5 rounded border border-brand-border">
+              <span class="text-brand-amber font-bold">Paragraph Indent & Gap</span>
+              <div class="text-slate-300">\setlength{\parindent}{1cm}</div>
+              <div class="text-slate-300">\setlength{\parskip}{1em}</div>
+              <div class="text-slate-400">\noindent % Suppress for 1 para</div>
+            </div>
+            <div class="bg-brand-bg p-2.5 rounded border border-brand-border">
+              <span class="text-brand-cyan font-bold">Line Breaks & Spacing</span>
+              <div class="text-slate-300">\\ or \newline % Break line</div>
+              <div class="text-slate-300">\\[1cm] % Break + 1cm space</div>
+              <div class="text-slate-400">\usepackage{setspace} \onehalfspacing</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Box Models & Minipages -->
+        <div class="bg-brand-card border border-brand-border rounded-xl p-5 shadow-lg space-y-3">
+          <h3 class="text-base font-bold text-brand-emerald flex items-center gap-2">
+            <span>&#128230;</span> Box Models & Minipages
+          </h3>
+          <p class="text-slate-300 text-xs">
+            Minipages create isolated text boxes with custom widths, preventing awkward page breaks inside content.
+          </p>
+          <div class="space-y-2 text-xs font-mono">
+            <div class="bg-brand-bg p-2.5 rounded border border-brand-border">
+              <span class="text-brand-emerald font-bold">Minipage Environment</span>
+              <div class="text-slate-300">\begin{minipage}[c]{0.45\textwidth}</div>
+              <div class="text-slate-400">  Isolated content block</div>
+              <div class="text-slate-300">\end{minipage}</div>
+            </div>
+            <div class="bg-brand-bg p-2.5 rounded border border-brand-border">
+              <span class="text-brand-violet font-bold">Horizontal/Vertical Fill</span>
+              <div class="text-slate-300">\hspace{1.5cm} or \hfill</div>
+              <div class="text-slate-300">\vspace{2cm} or \vfill</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 3: FLOATING ENVIRONMENTS, TABLES & FIGURE PLACEMENT PHYSICS -->
+    <section id="floats-tables" class="space-y-6">
+      <div class="border-l-4 border-brand-amber pl-4">
+        <h2 class="text-2xl font-bold text-white">3. Floating Environments, Dynamic Tables & Placement Physics</h2>
+        <p class="text-slate-400 text-sm mt-1">
+          LaTeX floats (<code class="text-brand-amber">figure</code> and <code class="text-brand-amber">table</code>) do not stay inline by default. The compiler positions floats according to placement parameters, maintaining visual page equilibrium.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <!-- Chart 2: Float Directive Rigidity -->
+        <div class="bg-brand-card border border-brand-border rounded-xl p-6 shadow-lg flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <h3 class="text-lg font-bold text-brand-amber flex items-center gap-2">
+                <span>&#9875;</span> Float Placement Directive Rigidity
+              </h3>
+              <span class="text-xs bg-brand-amber/20 text-brand-amber px-2 py-0.5 rounded font-mono">Positioning Specifiers</span>
+            </div>
+            <p class="text-slate-300 text-sm mb-4">
+              Comparing float directives across position rigidity versus compiler flexibility dimensions.
+            </p>
+            <div class="chart-container">
+              <canvas id="floatRadarChart"></canvas>
+            </div>
+          </div>
+          <div class="mt-4 pt-3 border-t border-brand-border/60 text-xs text-slate-400">
+            <strong>Specifiers:</strong> <code class="text-brand-amber font-mono">h</code> (Here), <code class="text-brand-amber font-mono">t</code> (Top), <code class="text-brand-amber font-mono">b</code> (Bottom), <code class="text-brand-amber font-mono">p</code> (Page), <code class="text-brand-amber font-mono">!</code> (Override rules), <code class="text-brand-amber font-mono">H</code> (Exact inline via <code class="font-mono">float</code> pkg).
+          </div>
+        </div>
+
+        <!-- Dynamic Tables & Delimiters -->
+        <div class="bg-brand-card border border-brand-border rounded-xl p-6 shadow-lg flex flex-col justify-between">
+          <div>
+            <h3 class="text-lg font-bold text-brand-emerald mb-3 flex items-center gap-2">
+              <span>&#128451;</span> Dynamic Tables (<code class="font-mono">tabularx</code> & <code class="font-mono">bigdelim</code>)
+            </h3>
+            <p class="text-slate-300 text-sm mb-4">
+              While standard <code class="text-brand-emerald">tabular</code> requires fixed column widths, <code class="text-brand-emerald">tabularx</code> dynamically wraps long text with the <code class="text-brand-emerald font-mono">X</code> column specifier. Outer braces can be attached using <code class="text-brand-emerald font-mono">bigdelim</code>.
+            </p>
+
+            <div class="space-y-3 font-mono text-xs">
+              <!-- TabularX Code -->
+              <div class="bg-brand-bg p-3.5 rounded-xl border border-brand-border">
+                <div class="text-brand-emerald font-bold mb-1">// TabularX (Auto-wrapping Width Column)</div>
+                <div class="text-slate-300">\usepackage{tabularx}</div>
+                <div class="text-slate-300">\begin{tabularx}{\textwidth}{|l|X|}</div>
+                <div class="text-slate-400">  \hline Command & Description Block wrapped automatically \\ \hline</div>
+                <div class="text-slate-300">\end{tabularx}</div>
+              </div>
+
+              <!-- Bigdelim Code -->
+              <div class="bg-brand-bg p-3.5 rounded-xl border border-brand-border">
+                <div class="text-brand-cyan font-bold mb-1">// Bigdelim Table Braces (\ldelim & \rdelim)</div>
+                <div class="text-slate-300">\usepackage{bigdelim, multirow}</div>
+                <div class="text-slate-400">\ldelim\{{3}{2mm}[Left Group] % 3 rows brace</div>
+                <div class="text-slate-400">\rdelim\}}{3}{2mm}[Right Group]</div>
+              </div>
+
+              <!-- Subfigure Grid -->
+              <div class="grid grid-cols-2 gap-2 text-slate-300 text-[11px]">
+                <div class="bg-brand-bg p-2 rounded border border-brand-border">
+                  <div class="text-brand-amber font-bold">\begin{subfigure}[b]{0.45\textwidth}</div>
+                  <div class="text-slate-400">\includegraphics[width=\textwidth]{fig1}</div>
+                </div>
+                <div class="bg-brand-bg p-2 rounded border border-brand-border">
+                  <div class="text-brand-amber font-bold">\begin{subfigure}[b]{0.45\textwidth}</div>
+                  <div class="text-slate-400">\includegraphics[width=\textwidth]{fig2}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="mt-4 pt-3 border-t border-brand-border/60 text-xs text-slate-400">
+            <strong>Booktabs Rule:</strong> For publication tables, replace standard vertical lines with <code class="text-brand-emerald font-mono">\toprule</code>, <code class="text-brand-emerald font-mono">\midrule</code>, and <code class="text-brand-emerald font-mono">\bottomrule</code>.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 4: MATHEMATICAL ENGINE, COMMUTATIVE TOPOLOGY & MATRICES -->
+    <section id="math-engine" class="space-y-6">
+      <div class="border-l-4 border-brand-emerald pl-4">
+        <h2 class="text-2xl font-bold text-white">4. Mathematical Engine, Commutative Topology & Matrices</h2>
+        <p class="text-slate-400 text-sm mt-1">
+          LaTeX delivers unequaled mathematical typesetting capabilities through <code class="text-brand-emerald">amsmath</code>, matrix delimiters, piecewise functions, and topological arrows via <code class="text-brand-emerald">amscd</code> and <code class="text-brand-emerald">xypick</code>.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <!-- Chart 3: Package Adoption -->
+        <div class="bg-brand-card border border-brand-border rounded-xl p-6 shadow-lg flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <h3 class="text-lg font-bold text-brand-emerald flex items-center gap-2">
+                <span>&#9883;</span> Core Scientific Package Utilization
+              </h3>
+              <span class="text-xs bg-brand-emerald/20 text-brand-emerald px-2 py-0.5 rounded font-mono">Ecosystem Adoption</span>
+            </div>
+            <p class="text-slate-300 text-sm mb-4">
+              Relative adoption rate of fundamental scientific extension packages in academic publications.
+            </p>
+            <div class="chart-container">
+              <canvas id="pkgChart"></canvas>
+            </div>
+          </div>
+          <div class="mt-4 pt-3 border-t border-brand-border/60 text-xs text-slate-400">
+            <strong>Core Suite:</strong> <code class="text-brand-emerald">amsmath</code>, <code class="text-brand-emerald">amssymb</code>, and <code class="text-brand-emerald">amsthm</code> form the standard foundation for mathematical proofs.
+          </div>
+        </div>
+
+        <!-- Matrix Delimiters & Commutative Diagrams (amscd / xypick) -->
+        <div class="bg-brand-card border border-brand-border rounded-xl p-6 shadow-lg flex flex-col justify-between">
+          <div>
+            <h3 class="text-lg font-bold text-brand-cyan mb-3 flex items-center gap-2">
+              <span>&#935;</span> Matrices & Commutative Topology (<code class="font-mono">xypick</code>)
+            </h3>
+            <p class="text-slate-300 text-sm mb-4">
+              Complex algebraic diagrams with diagonal and vertical arrows can be mapped using <code class="text-brand-cyan font-mono">xypick</code> (<code class="text-brand-cyan font-mono">\xymatrix</code>) or <code class="text-brand-cyan font-mono">amscd</code>.
+            </p>
+
+            <div class="space-y-3 font-mono text-xs">
+              <!-- Matrix Delimiters Grid -->
+              <div class="grid grid-cols-4 gap-2 text-center">
+                <div class="bg-brand-bg p-2 rounded border border-brand-border">
+                  <div class="text-brand-cyan font-bold">pmatrix</div>
+                  <div class="text-slate-400">( &nbsp; )</div>
+                </div>
+                <div class="bg-brand-bg p-2 rounded border border-brand-border">
+                  <div class="text-brand-violet font-bold">bmatrix</div>
+                  <div class="text-slate-400">[ &nbsp; ]</div>
+                </div>
+                <div class="bg-brand-bg p-2 rounded border border-brand-border">
+                  <div class="text-brand-amber font-bold">vmatrix</div>
+                  <div class="text-slate-400">| &nbsp; |</div>
+                </div>
+                <div class="bg-brand-bg p-2 rounded border border-brand-border">
+                  <div class="text-brand-rose font-bold">border-matrix</div>
+                  <div class="text-slate-400">Labeled</div>
+                </div>
+              </div>
+
+              <!-- XY-Pic Commutative Diagram Code -->
+              <div class="bg-brand-bg p-3.5 rounded-xl border border-brand-border space-y-1">
+                <div class="text-brand-violet font-bold mb-1">// XY-Pic Commutative Topology (\xymatrix)</div>
+                <div class="text-slate-300">\usepackage[all]{xy}</div>
+                <div class="text-slate-300">\xymatrix{</div>
+                <div class="text-slate-400">  A \ar[r]^-{f} \ar[d]_-{g} \ar[dr]^-{h} & B \ar[d]^-{k} \\</div>
+                <div class="text-slate-400">  C \ar[r]_-{m}                         & D</div>
+                <div class="text-slate-300">}</div>
+              </div>
+
+              <!-- Align & Split Code -->
+              <div class="bg-brand-bg p-3 rounded-xl border border-brand-border">
+                <div class="text-brand-emerald font-bold mb-1">// Piecewise Functions (cases)</div>
+                <div class="text-slate-300">f(x) = \begin{cases} \frac{x}{2}, & \text{if even} \\ 3x+1, & \text{if odd} \end{cases}</div>
+              </div>
+            </div>
+          </div>
+          <div class="mt-4 pt-3 border-t border-brand-border/60 text-xs text-slate-400">
+            <strong>Arrow Routing:</strong> In <code class="text-brand-cyan font-mono">\ar[...]</code>, <code class="font-mono">r</code> = right, <code class="font-mono">l</code> = left, <code class="font-mono">d</code> = down, <code class="font-mono">u</code> = up, and <code class="font-mono">dr</code> = diagonal down-right.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 5: CODE SNIPPETS, VERBATIM, PYGMENTS & ALGORITHMS -->
+    <section id="code-algorithms" class="space-y-6">
+      <div class="border-l-4 border-brand-indigo pl-4">
+        <h2 class="text-2xl font-bold text-white">5. Code Snippets, Verbatim, Pygments Engine & Algorithms</h2>
+        <p class="text-slate-400 text-sm mt-1">
+          Source code blocks and pseudocode algorithms can be embedded using verbatim blocks, the Pygments-powered <code class="text-brand-indigo">minted</code> package, or structured <code class="text-brand-indigo">algorithm2e</code> environments.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <!-- Minted Syntax Engine -->
+        <div class="bg-brand-card border border-brand-border rounded-xl p-6 shadow-lg flex flex-col justify-between">
+          <div>
+            <h3 class="text-lg font-bold text-brand-indigo mb-3 flex items-center gap-2">
+              <span>&#12433;</span> Highlighting with <code class="font-mono">minted</code> (Pygments)
+            </h3>
+            <p class="text-slate-300 text-sm mb-4">
+              <code class="text-brand-indigo font-mono">minted</code> requires compiling with the <code class="text-brand-indigo font-mono">-shell-escape</code> flag to interface with the Python Pygments syntax engine.
+            </p>
+
+            <div class="space-y-3 font-mono text-xs">
+              <div class="bg-brand-bg p-4 rounded-xl border border-brand-border space-y-1">
+                <div class="text-brand-indigo font-bold mb-1">// Minted Configuration & Code Block</div>
+                <div class="text-slate-300">\usepackage{minted}</div>
+                <div class="text-slate-400">\setminted[python]{linenos=true, frame=lines}</div>
+                <div class="text-slate-300">\begin{minted}[mathescape]{python}</div>
+                <div class="text-slate-400">def fibonacci(n):</div>
+                <div class="text-slate-400">    # Return $n^{th}$ Fibonacci term</div>
+                <div class="text-slate-400">    return n if n <= 1 else fib(n-1) + fib(n-2)</div>
+                <div class="text-slate-300">\end{minted}</div>
+              </div>
+
+              <!-- Custom Theorem Styling -->
+              <div class="bg-brand-bg p-3.5 rounded-xl border border-brand-border">
+                <div class="text-brand-amber font-bold mb-1">// Custom Theorems (amsthm)</div>
+                <div class="text-slate-300">\theoremstyle{definition}</div>
+                <div class="text-slate-300">\newtheorem{theorem}{Theorem}[section]</div>
+                <div class="text-slate-400">\begin{theorem}[Euler's Identity]</div>
+                <div class="text-slate-400">  $e^{i\pi} + 1 = 0$</div>
+                <div class="text-slate-300">\end{theorem}</div>
+              </div>
+            </div>
+          </div>
+          <div class="mt-4 pt-3 border-t border-brand-border/60 text-xs text-slate-400">
+            <strong>Note:</strong> Standard <code class="text-brand-indigo font-mono">\begin{verbatim}</code> prints raw monospaced text without external shell execution.
+          </div>
+        </div>
+
+        <!-- Algorithm2e Pseudocode Structure -->
+        <div class="bg-brand-card border border-brand-border rounded-xl p-6 shadow-lg flex flex-col justify-between">
+          <div>
+            <h3 class="text-lg font-bold text-brand-emerald mb-3 flex items-center gap-2">
+              <span>&#129302;</span> Structured Pseudocode (<code class="font-mono">algorithm2e</code>)
+            </h3>
+            <p class="text-slate-300 text-sm mb-4">
+              <code class="text-brand-emerald font-mono">algorithm2e</code> formats academic algorithms with input/output blocks, line numbers, and custom vertical control loops.
+            </p>
+
+            <div class="space-y-3 font-mono text-xs">
+              <div class="bg-brand-bg p-4 rounded-xl border border-brand-border space-y-1">
+                <div class="text-brand-emerald font-bold mb-1">// Algorithm2e Blueprint</div>
+                <div class="text-slate-300">\usepackage[ruled, vlined, linesnumbered]{algorithm2e}</div>
+                <div class="text-slate-300">\begin{algorithm}[H]</div>
+                <div class="text-slate-400">  \SetKwInOut{Input}{Input}\SetKwInOut{Output}{Output}</div>
+                <div class="text-slate-400">  \Input{Graph $G = (V, E)$}</div>
+                <div class="text-slate-400">  \For{$v \in V$}{</div>
+                <div class="text-slate-400">    \If{$v.\text{visited} == \text{False}$}{</div>
+                <div class="text-slate-400">      DFS($v$)\;</div>
+                <div class="text-slate-400">    }</div>
+                <div class="text-slate-400">  }</div>
+                <div class="text-slate-400">  \caption{Depth-First Traversal}</div>
+                <div class="text-slate-300">\end{algorithm}</div>
+              </div>
+            </div>
+          </div>
+          <div class="mt-4 pt-3 border-t border-brand-border/60 text-xs text-slate-400">
+            <strong>Rule:</strong> In <code class="text-brand-emerald font-mono">algorithm2e</code>, every line inside the body must end with a semicolon (<code class="text-brand-emerald font-mono font-bold">\;</code>) to trigger proper line breaks.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 6: MULTI-PASS COMPILATION, AUXILIARY FILES & BIBLIOGRAPHIES -->
+    <section id="compilation-bib" class="space-y-6">
+      <div class="border-l-4 border-brand-rose pl-4">
+        <h2 class="text-2xl font-bold text-white">6. Multi-Pass Compilation Lifecycle, Bibliographies & Languages</h2>
+        <p class="text-slate-400 text-sm mt-1">
+          Complex documents require multiple compilation passes. External tools (<code class="text-brand-rose">biber</code>, <code class="text-brand-rose">makeindex</code>, <code class="text-brand-rose">itrans</code>) process auxiliary files (<code class="text-brand-rose font-mono">.aux</code>, <code class="text-brand-rose font-mono">.bcf</code>, <code class="text-brand-rose font-mono">.idx</code>) to generate bibliographical citations and cross-references.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <!-- Diagram 2: Auxiliary Compilation Pipeline -->
+        <div class="bg-brand-card border border-brand-border rounded-xl p-6 shadow-lg flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <h3 class="text-lg font-bold text-brand-rose flex items-center gap-2">
+                <span>&#128034;</span> Auxiliary File Multi-Pass Compilation Lifecycle
+              </h3>
+              <span class="text-xs bg-brand-rose/20 text-brand-rose px-2 py-0.5 rounded font-mono">Pipeline Passes</span>
+            </div>
+            <p class="text-slate-300 text-sm mb-4">
+              A complete document build sequence resolves auxiliary cross-references through successive tool executions.
+            </p>
+
+            <div class="space-y-3 font-mono text-xs">
+              <div class="bg-brand-bg p-3 rounded-lg border border-brand-border flex items-center justify-between">
+                <div>
+                  <span class="text-brand-cyan font-bold">1. pdflatex (Pass 1)</span>
+                  <div class="text-slate-400">Parses .tex & generates .aux, .bcf, .idx files</div>
+                </div>
+                <span class="text-lg">⚙️</span>
+              </div>
+
+              <div class="bg-brand-bg p-3 rounded-lg border border-brand-amber/60 flex items-center justify-between bg-brand-amber/5">
+                <div>
+                  <span class="text-brand-amber font-bold">2. biber & makeindex</span>
+                  <div class="text-slate-400">Processes .bcf -> .bbl (Citations) & .idx -> .ind (Index)</div>
+                </div>
+                <span class="text-lg">📚</span>
+              </div>
+
+              <div class="bg-brand-bg p-3 rounded-lg border border-brand-emerald flex items-center justify-between">
+                <div>
+                  <span class="text-brand-emerald font-bold">3. pdflatex (Pass 2 & 3)</span>
+                  <div class="text-slate-400">Integrates .bbl & resolves page/section references in PDF</div>
+                </div>
+                <span class="text-lg">📄</span>
+              </div>
+            </div>
+          </div>
+          <div class="mt-4 pt-3 border-t border-brand-border/60 text-xs text-slate-400">
+            <strong>Cross-Referencing:</strong> Use <code class="text-brand-cyan font-mono">\cref{label}</code> (from <code class="text-brand-cyan font-mono">cleveref</code>) to automatically render "Figure 1" or "Section 2".
+          </div>
+        </div>
+
+        <!-- Chart 4: Multi-Pass Compilation Latency -->
+        <div class="bg-brand-card border border-brand-border rounded-xl p-6 shadow-lg flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <h3 class="text-lg font-bold text-brand-violet flex items-center gap-2">
+                <span>&#9203;</span> Execution Pass Requirements by Document Complexity
+              </h3>
+              <span class="text-xs bg-brand-violet/20 text-brand-violet px-2 py-0.5 rounded font-mono">Pass Latency</span>
+            </div>
+            <p class="text-slate-300 text-sm mb-4">
+              Comparing execution passes required across document types to achieve full resolution.
+            </p>
+            <div class="chart-container">
+              <canvas id="compilationChart"></canvas>
+            </div>
+          </div>
+          <div class="mt-4 pt-3 border-t border-brand-border/60 text-xs text-slate-400">
+            <strong>Index Styling:</strong> Custom <code class="text-brand-violet font-mono">.ist</code> style files configure alphabetical group headers inside generated indices.
+          </div>
+        </div>
+      </div>
+
+      <!-- ITRANS & Internationalization Box -->
+      <div class="bg-brand-card border border-brand-border rounded-xl p-6 shadow-lg space-y-4">
+        <h3 class="text-lg font-bold text-brand-rose flex items-center gap-2">
+          <span>&#127760;</span> Multi-Language Transliteration Pipeline (ITRANS Engine)
+        </h3>
+        <p class="text-slate-300 text-sm">
+          LaTeX translates ASCII key sequences into regional conjunct glyphs (e.g., Devanagari/Tamil) via intermediate pre-processors like ITRANS.
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 font-mono text-xs">
+          <div class="bg-brand-bg p-3.5 rounded-lg border border-brand-border space-y-1">
+            <span class="text-brand-cyan font-bold">1. Phonetic ASCII Input</span>
+            <div class="text-slate-400">#indian #language=Tamil</div>
+            <div class="text-slate-300">#languagename=tamil</div>
+            <div class="text-slate-400">% Phonetic English keymaps</div>
+            <div class="text-slate-300">#endindian</div>
+          </div>
+          <div class="bg-brand-bg p-3.5 rounded-lg border border-brand-rose/60 bg-brand-rose/5 space-y-1">
+            <span class="text-brand-rose font-bold">2. ITRANS Executable</span>
+            <div class="text-slate-300">Pre-processor parses phonetic keymaps</div>
+            <div class="text-slate-400">Generates TeX glyph macro outputs</div>
+          </div>
+          <div class="bg-brand-bg p-3.5 rounded-lg border border-brand-emerald space-y-1">
+            <span class="text-brand-emerald font-bold">3. LaTeX Engine Build</span>
+            <div class="text-slate-300">\usepackage{devanagari}</div>
+            <div class="text-slate-400">\begin{dn} ... \end{dn}</div>
+            <div class="text-slate-300">Renders native Indic scripts</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 7: BEAMER PRESENTATION ENGINE & DOMAIN EFFICIENCY -->
+    <section id="beamer-slides" class="space-y-6">
+      <div class="border-l-4 border-brand-violet pl-4">
+        <h2 class="text-2xl font-bold text-white">7. Beamer Presentation Engine & Ecosystem Efficiency</h2>
+        <p class="text-slate-400 text-sm mt-1">
+          The <code class="text-brand-violet">beamer</code> class turns LaTeX source files into interactive presentation slides with overlay animations, blocks, and dynamic multi-column layouts.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <!-- Beamer Structure Card -->
+        <div class="bg-brand-card border border-brand-border rounded-xl p-6 shadow-lg flex flex-col justify-between">
+          <div>
+            <h3 class="text-lg font-bold text-brand-violet mb-3 flex items-center gap-2">
+              <span>&#128187;</span> Beamer Frame Architecture & Overlays
+            </h3>
+            <p class="text-slate-300 text-sm mb-4">
+              Slides are defined inside <code class="text-brand-violet font-mono">\begin{frame}</code> environments. Use <code class="text-brand-violet font-mono">\pause</code> or overlay specifications (<code class="text-brand-violet font-mono">&lt;1-&gt;</code>) for step-by-step reveals.
+            </p>
+
+            <div class="space-y-3 font-mono text-xs">
+              <div class="bg-brand-bg p-4 rounded-xl border border-brand-border space-y-1">
+                <div class="text-brand-violet font-bold mb-1">// Beamer Slide Frame Blueprint</div>
+                <div class="text-slate-300">\documentclass{beamer}</div>
+                <div class="text-slate-400">\usetheme{Madrid} \usecolortheme{beaver}</div>
+                <div class="text-slate-300">\begin{frame}{Slide Title}{Optional Subtitle}</div>
+                <div class="text-slate-400">  \begin{block}{Key Concept}</div>
+                <div class="text-slate-400">    Highlighted block statement.</div>
+                <div class="text-slate-400">  \end{block}</div>
+                <div class="text-slate-300">  \begin{itemize}</div>
+                <div class="text-slate-400">    \item First point appears immediately \pause</div>
+                <div class="text-slate-400">    \item Second point appears on next click</div>
+                <div class="text-slate-300">  \end{itemize}</div>
+                <div class="text-slate-300">\end{frame}</div>
+              </div>
+            </div>
+          </div>
+          <div class="mt-4 pt-3 border-t border-brand-border/60 text-xs text-slate-400">
+            <strong>Beamer Blocks:</strong> Standard blocks include <code class="text-brand-violet font-mono">block</code>, <code class="text-brand-rose font-mono">alertblock</code>, and <code class="text-brand-emerald font-mono">exampleblock</code>.
+          </div>
+        </div>
+
+        <!-- Chart 5: Benchmark Radar -->
+        <div class="bg-brand-card border border-brand-border rounded-xl p-6 shadow-lg flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <h3 class="text-lg font-bold text-brand-cyan flex items-center gap-2">
+                <span>&#127942;</span> LaTeX Technical Efficiency vs WYSIWYG
+              </h3>
+              <span class="text-xs bg-brand-cyan/20 text-brand-cyan px-2 py-0.5 rounded font-mono">Domain Benchmark</span>
+            </div>
+            <p class="text-slate-300 text-sm mb-4">
+              Comparing LaTeX against standard WYSIWYG word processors across 5 core document production metrics.
+            </p>
+            <div class="chart-container">
+              <canvas id="benchmarkRadarChart"></canvas>
+            </div>
+          </div>
+          <div class="mt-4 pt-3 border-t border-brand-border/60 text-xs text-slate-400">
+            <strong>Summary:</strong> While LaTeX has a steeper initial learning curve, it scales seamlessly for large, highly structured technical publications.
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Global Footer -->
+  <footer class="max-w-7xl mx-auto px-6 mt-16 pt-8 border-t border-brand-border flex flex-wrap justify-between items-center text-xs text-slate-400 gap-4">
+    <div>
+      Master LaTeX Spectrum Infographic &bull; Based on Course Syllabus & Reference Data by Ammar Taha
+    </div>
+    <div class="flex items-center space-x-3">
+      <span class="bg-brand-card px-3 py-1 rounded border border-brand-border text-brand-cyan font-mono">No SVG / No Mermaid JS</span>
+      <span class="bg-brand-card px-3 py-1 rounded border border-brand-border text-brand-emerald font-mono">HTML5 Canvas Rendered</span>
+    </div>
+  </footer>
+
+  <!-- Chart.js Configuration Script -->
+  <script>
+    // Label wrapping helper for labels exceeding 16 characters
+    function wrapLabel(labelStr, maxLen = 16) {
+      if (typeof labelStr !== 'string' || labelStr.length <= maxLen) return labelStr;
+      const words = labelStr.split(' ');
+      const lines = [];
+      let currentLine = '';
+      words.forEach(word => {
+        if ((currentLine + word).length > maxLen) {
+          if (currentLine) lines.push(currentLine.trim());
+          currentLine = word + ' ';
+        } else {
+          currentLine += word + ' ';
+        }
+      });
+      if (currentLine) lines.push(currentLine.trim());
+      return lines;
+    }
+
+    // Mandatory Shared Tooltip Configuration for Chart.js
+    const sharedTooltipConfig = {
+      callbacks: {
+        title: function(tooltipItems) {
+          const item = tooltipItems[0];
+          let label = item.chart.data.labels[item.dataIndex];
+          if (Array.isArray(label)) {
+            return label.join(' ');
+          } else {
+            return label;
+          }
+        }
+      }
+    };
+
+    // Chart 1: Document Class Utilization (Doughnut Chart)
+    const rawClassLabels = ['Journal Articles (article)', 'Academic Books (book)', 'Technical Reports (report)', 'Beamer Slides (beamer)', 'Formal Letters (letter)'];
+    new Chart(document.getElementById('docClassChart'), {
+      type: 'doughnut',
+      data: {
+        labels: rawClassLabels.map(l => wrapLabel(l)),
+        datasets: [{
+          data: [45, 25, 15, 12, 3],
+          backgroundColor: ['#06B6D4', '#8B5CF6', '#F59E0B', '#10B981', '#F43F5E'],
+          borderColor: '#1E293B',
+          borderWidth: 2
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: { position: 'right', labels: { color: '#94A3B8', font: { size: 11 } } },
+          tooltip: sharedTooltipConfig
+        }
+      }
+    });
+
+    // Chart 2: Float Placement Directive Rigidity (Radar Chart)
+    const rawFloatLabels = ['Here Position (h)', 'Top Page (t)', 'Bottom Page (b)', 'Float Page (p)', 'Override Limits (!)', 'Exact Inline (H)'];
+    new Chart(document.getElementById('floatRadarChart'), {
+      type: 'radar',
+      data: {
+        labels: rawFloatLabels.map(l => wrapLabel(l)),
+        datasets: [
+          {
+            label: 'Placement Rigidity',
+            data: [40, 60, 65, 80, 90, 100],
+            backgroundColor: 'rgba(245, 158, 11, 0.25)',
+            borderColor: '#F59E0B',
+            pointBackgroundColor: '#F59E0B'
+          },
+          {
+            label: 'Compiler Flexibility',
+            data: [80, 75, 70, 40, 20, 0],
+            backgroundColor: 'rgba(6, 182, 212, 0.25)',
+            borderColor: '#06B6D4',
+            pointBackgroundColor: '#06B6D4'
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+          r: {
+            grid: { color: '#334155' },
+            angleLines: { color: '#334155' },
+            pointLabels: { color: '#CBD5E1', font: { size: 10 } },
+            ticks: { display: false }
+          }
+        },
+        plugins: {
+          legend: { position: 'bottom', labels: { color: '#94A3B8', font: { size: 11 } } },
+          tooltip: sharedTooltipConfig
+        }
+      }
+    });
+
+    // Chart 3: Scientific Package Ecosystem (Polar Area Chart)
+    const rawPkgLabels = ['AMS Math Suite (amsmath)', 'Graphics Control (graphicx)', 'Page Geometry (geometry)', 'Modern Citations (biblatex)', 'Dynamic Tables (tabularx)', 'Code Highlighting (minted)'];
+    new Chart(document.getElementById('pkgChart'), {
+      type: 'polarArea',
+      data: {
+        labels: rawPkgLabels.map(l => wrapLabel(l)),
+        datasets: [{
+          data: [96, 88, 92, 82, 74, 62],
+          backgroundColor: [
+            'rgba(16, 185, 129, 0.7)',
+            'rgba(6, 182, 212, 0.7)',
+            'rgba(139, 92, 246, 0.7)',
+            'rgba(245, 158, 11, 0.7)',
+            'rgba(244, 63, 94, 0.7)',
+            'rgba(99, 102, 241, 0.7)'
+          ],
+          borderColor: '#1E293B'
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+          r: { grid: { color: '#334155' }, ticks: { display: false } }
+        },
+        plugins: {
+          legend: { position: 'right', labels: { color: '#94A3B8', font: { size: 10 } } },
+          tooltip: sharedTooltipConfig
+        }
+      }
+    });
+
+    // Chart 4: Multi-Pass Compilation Execution Latency (Stacked Bar)
+    const rawPassLabels = ['Basic Article Build', 'TOC & References', 'Biber Bibliography Sync', 'MakeIndex Generation', 'Complex Thesis Build'];
+    new Chart(document.getElementById('compilationChart'), {
+      type: 'bar',
+      data: {
+        labels: rawPassLabels.map(l => wrapLabel(l)),
+        datasets: [
+          {
+            label: 'Pass 1: pdflatex',
+            data: [1, 1, 1, 1, 1],
+            backgroundColor: '#06B6D4'
+          },
+          {
+            label: 'Pass 2: External (Biber/MakeIndex)',
+            data: [0, 0, 1, 1, 1],
+            backgroundColor: '#F59E0B'
+          },
+          {
+            label: 'Pass 3: Resolving References',
+            data: [0, 1, 1, 1, 2],
+            backgroundColor: '#8B5CF6'
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+          x: { stacked: true, grid: { display: false }, ticks: { color: '#CBD5E1', font: { size: 10 } } },
+          y: { stacked: true, grid: { color: '#334155' }, ticks: { color: '#94A3B8' }, title: { display: true, text: 'Required Execution Passes', color: '#64748B' } }
+        },
+        plugins: {
+          legend: { position: 'bottom', labels: { color: '#94A3B8', font: { size: 11 } } },
+          tooltip: sharedTooltipConfig
+        }
+      }
+    });
+
+    // Chart 5: Technical Efficiency Benchmark (Radar Chart)
+    const rawBenchmarkLabels = ['Mathematical Precision', 'Citation Automation', 'Document Scaling', 'Layout Stability', 'Learning Curve'];
+    new Chart(document.getElementById('benchmarkRadarChart'), {
+      type: 'radar',
+      data: {
+        labels: rawBenchmarkLabels.map(l => wrapLabel(l)),
+        datasets: [
+          {
+            label: 'LaTeX Engine',
+            data: [100, 98, 95, 95, 30],
+            backgroundColor: 'rgba(139, 92, 246, 0.25)',
+            borderColor: '#8B5CF6',
+            pointBackgroundColor: '#8B5CF6'
+          },
+          {
+            label: 'Standard WYSIWYG',
+            data: [45, 50, 40, 35, 90],
+            backgroundColor: 'rgba(244, 63, 94, 0.25)',
+            borderColor: '#F43F5E',
+            pointBackgroundColor: '#F43F5E'
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+          r: {
+            grid: { color: '#334155' },
+            angleLines: { color: '#334155' },
+            pointLabels: { color: '#CBD5E1', font: { size: 10 } },
+            ticks: { display: false }
+          }
+        },
+        plugins: {
+          legend: { position: 'bottom', labels: { color: '#94A3B8', font: { size: 11 } } },
+          tooltip: sharedTooltipConfig
+        }
+      }
+    });
+  </script>
+</body>
+</html>
